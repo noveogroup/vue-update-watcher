@@ -1,24 +1,23 @@
-# vue-watch
+# Vue update watcher
 
-## Project setup
-```
-yarn install
-```
+The chrome extention that helps you not miss out on the recent Vue updates!
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## Commands:
 
-### Compiles and minifies for production
-```
-yarn build
-```
+Project setup  
+`yarn install`
 
-### Lints and fixes files
-```
-yarn lint
-```
+Compiles and hot-reloads for development  
+`yarn serve`
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Compiles and minifies for production  
+`yarn build`
+
+Run your unit tests  
+`yarn test:unit`
+
+Run your end-to-end tests  
+`yarn test:e2e`
+
+Lints and fixes files  
+`yarn lint`

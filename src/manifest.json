@@ -6,7 +6,10 @@
   "default_locale": "en",
   "permissions": [
     "<all_urls>",
-    "*://*/*"
+    "*://*/*",
+    "alarms",
+    "notifications",
+    "storage"
   ],
   "icons": {
     "16": "icons/16.png",
