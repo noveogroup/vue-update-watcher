@@ -8,6 +8,15 @@
   </div>
 </template>
 
+<script>
+export default {
+  created () {
+    console.log('123')
+    browser.browserAction.setBadgeText({ text: '' })
+  }
+}
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -19,7 +28,6 @@
 
 #nav {
   padding: 30px;
-
   a {
     font-weight: bold;
     color: #2c3e50;

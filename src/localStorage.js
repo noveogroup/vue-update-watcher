@@ -1,33 +1,15 @@
-import { getVueReleases } from '@/axios'
-const VUE_RELEASES_STORAGE_KEY = 'vue'
-
-export async function init () {
-  const fetchedVueReleases = await getVueReleases()
-  console.log(fetchedVueReleases)
-
-  await chrome.storage.local.set({ VUE_RELEASES_STORAGE_KEY: fetchedVueReleases })
-  console.log('init')
-
-  const curr = await chrome.storage.local.get(VUE_RELEASES_STORAGE_KEY, () => {})
-  console.log('curr data is ', curr)
-}
-
-export async function refreshStorage () {
-  const currVueReleases = await browser.storage.sync.get(
-    VUE_RELEASES_STORAGE_KEY, () => {}
-  )
-  if (currVueReleases === undefined) {
-    init()
-    return
+export default {
+  async get (key) {
+    const res = await browser.storage.local.get([key])
+    return JSON.parse(res[key])
+  },
+  set (key, payload) {
+    browser.storage.local.set({ [key]: JSON.stringify(payload) })
+  },
+  remove (key) {
+    browser.storage.local.remove(key)
+  },
+  clear () {
+    browser.storage.local.clear()
   }
-  console.log(currVueReleases)
-
-  const fetchedVueReleases = await getVueReleases()
-  console.log('f', fetchedVueReleases)
-
-  if (currVueReleases[0] !== fetchedVueReleases[0]) {
-    browser.storage.local.set({ VUE_RELEASES_STORAGE_KEY: fetchedVueReleases })
-    console.log('wrote to db')
-  }
-  console.log(fetchedVueReleases)
 }

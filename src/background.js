@@ -1,16 +1,40 @@
-import { refreshStorage, init } from './localStorage'
+import { fetchAllReleases } from '@/axios'
+import localStorage from './localStorage'
 
-browser.runtime.onInstalled.addListener(() => {
-  init()
+export const RELEASES_STORAGE_KEY = 'releases'
+export const NOTIFICATION_COUNT_KEY = 'notificationCount'
+
+browser.browserAction.setBadgeBackgroundColor({ color: '#41b883' })
+
+browser.runtime.onInstalled.addListener(async () => {
+  const releases = await fetchAllReleases()
+  localStorage.set(RELEASES_STORAGE_KEY, releases)
+  localStorage.set(NOTIFICATION_COUNT_KEY, 0)
 })
 
-browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  console.log('Hello from the background')
-})
-
-browser.alarms.create('myAlarm', { periodInMinutes: 10 })
+browser.alarms.create('releaseCheck', { periodInMinutes: 0.1 })
 
 browser.alarms.onAlarm.addListener(async alarm => {
-  console.log('Got an alarm!', alarm)
-  refreshStorage()
+  function getLatestIdsString (obj) {
+    const valuesArr = Object.values(obj)
+    const values = valuesArr.map(ver => ver[0].id)
+    return JSON.stringify(values)
+  }
+
+  const fetchedReleases = await fetchAllReleases()
+  const currReleases = await localStorage.get(RELEASES_STORAGE_KEY)
+
+  const fetchedIds = getLatestIdsString(fetchedReleases)
+  const currIds = getLatestIdsString(currReleases)
+
+  if (fetchedIds !== currIds) {
+    console.log('version updated!')
+    localStorage.set(RELEASES_STORAGE_KEY, fetchedReleases)
+    browser.alarms.create('newVersion', { delayInMinutes: 0 })
+
+    let count = await localStorage.get(NOTIFICATION_COUNT_KEY)
+    localStorage.set(NOTIFICATION_COUNT_KEY, ++count)
+
+    browser.browserAction.setBadgeText({ text: count.toString() })
+  }
 })
