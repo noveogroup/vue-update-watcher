@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>Vue Release Watcher</h1>
+  <div class="p-3">
+    <h1 class="is-size-4 has-text-weight-semibold">Vue Release Watcher</h1>
     <router-view />
   </div>
 </template>
@@ -10,25 +10,18 @@ export default {
   name: 'App',
   created () {
     this.$store.dispatch('init')
-    browser.browserAction.setBadgeText({ text: '' })
   }
 }
 </script>
 
-<style lang="scss">
-html {
+<style>
+:root {
   width: 400px;
-  height: 200px;
+  height: 110px;
 }
 
 h1, h3 {
   color: #41b883;
-}
-
-a {
-  font-weight: bold;
-  text-decoration: none;
-  color: black;
 }
 
 </style>

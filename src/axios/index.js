@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { releaseObjectKeys } from '@/helpers/constants'
 
 const baseUrl = 'https://api.github.com'
 
@@ -27,15 +28,12 @@ const mockRequest = async () => {
   }
 }
 
-export const releaseObjectKeys = ['vue', 'vuex', 'vueRouter', 'nuxt']
-
 export const fetchAllReleases = async () => {
   const res = await axios.all([
     fetchReleases(vueRepoUrl),
     fetchReleases(vuexRepoUrl),
     fetchReleases(vueRouterRepoUrl),
     mockRequest()
-
     // fetchReleases(nuxtRepoUrl)
   ])
 

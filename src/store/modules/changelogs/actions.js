@@ -1,23 +1,38 @@
-import { fetchVueReleases } from '@/axios'
 import localStorage from '@/localStorage'
-import { RELEASES_STORAGE_KEY } from '@/background'
-import { REFRESH_CHANGELOGS } from './mutation-types'
+import {
+  RELEASES_STORAGE_KEY,
+  LATEST_VERSIONS_STORAGE_KEY
+} from '@/background/'
+import { REFRESH_CHANGELOGS, REFRESH_LATEST_VERSIONS } from './mutation-types'
+import { setBadge, clearBadge } from '@/background/badge'
 
 export default {
-  async init (state) {
+  async init ({ commit }) {
     const releases = await localStorage.get(RELEASES_STORAGE_KEY)
-    state.commit(REFRESH_CHANGELOGS, releases)
+    const latestVersions = await localStorage.get(LATEST_VERSIONS_STORAGE_KEY)
+    commit(REFRESH_LATEST_VERSIONS, latestVersions)
+    commit(REFRESH_CHANGELOGS, releases)
   },
   async refreshStorage ({ commit }) {
-    const currVueReleases = await localStorage.get(RELEASES_STORAGE_KEY)
-    if (currVueReleases === undefined) {
+    const currReleases = await localStorage.get(RELEASES_STORAGE_KEY)
+    const latestVersions = await localStorage.get(LATEST_VERSIONS_STORAGE_KEY)
+    if (currReleases === undefined) {
       this.init()
       return
     }
-    const fetchedVueReleases = await fetchVueReleases()
-    if (currVueReleases[0] !== fetchedVueReleases[0]) {
-      localStorage.set({ RELEASES_STORAGE_KEY, fetchedVueReleases })
-      commit(REFRESH_CHANGELOGS, fetchedVueReleases)
+    commit(REFRESH_CHANGELOGS, currReleases)
+    commit(REFRESH_LATEST_VERSIONS, latestVersions)
+  },
+  async removeNotification ({ state, commit }, key) {
+    const latestVersions = await localStorage.get(LATEST_VERSIONS_STORAGE_KEY)
+    latestVersions[key].isUpdated = false
+    localStorage.set(LATEST_VERSIONS_STORAGE_KEY, latestVersions)
+    commit(REFRESH_LATEST_VERSIONS, latestVersions)
+
+    let showBadge = false
+    for (const library in state.latestVersions) {
+      if (state.latestVersions[library]?.isUpdated) showBadge = true
     }
+    showBadge ? setBadge() : clearBadge()
   }
 }
