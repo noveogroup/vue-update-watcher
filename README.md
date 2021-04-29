@@ -5,7 +5,7 @@ The chrome extention that helps you not miss out on the recent Vue updates!
 ## Commands:
 
 Project setup  
-`yarn install`
+`yarn`
 
 Compiles and hot-reloads for development  
 `yarn serve`
