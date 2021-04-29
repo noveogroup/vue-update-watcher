@@ -1,40 +1,39 @@
 <template>
-  <div>
-    <div class="columns is-centered">
-      <h2 class="column is-size-5 has-text-weight-semibold is-capitalizede">
+  <div class="changelog-view">
+    <div class="changelog-view__header" justify="center" align="bottom">
+      <router-link to="/"
+        ><el-button
+          size="mini"
+          class="changelog-view__back"
+          icon="el-icon-arrow-left"
+      /></router-link>
+      <span class="changelog-view__header-text">
         {{ packageNames[$route.params.package] }}
-      </h2>
+      </span>
     </div>
-    <div><router-link to="/">Back</router-link></div>
-    <b-collapse
-      class="card my-2"
-      :open="isOpen === index"
-      @open="isOpen = index"
-      v-for="(changelog, index) in getChangelogs"
-      :key="changelog.id"
-    >
-      <template #trigger>
-        <div class="block is-flex is-justify-content-space-between">
-          <b-button
-            :label="changelog.tag_name"
-            style="min-width: 100px"
-            type="is-normal"
-            size="is-small"
-            @click="changelog.isOpen = !changelog.isOpen"
-          />
-          <b-button
+    <el-collapse v-model="activeNames" class="changelog-view__collapse">
+      <el-collapse-item
+        :name="changelog.id"
+        v-for="changelog in getChangelogs"
+        :key="changelog.id"
+      >
+        <template slot="title">
+          <el-button
             @click="openExternalLink(changelog.html_url)"
-            class="is-ghost"
-            >Link</b-button
+            size="mini"
+            icon="el-icon-link"
+            class="changelog-view__collapse-button"
+            ></el-button
           >
-        </div>
-      </template>
-      <div
-        class="card-content content is-size-7"
-        ref="markdown"
-        v-html="setMarkdown(changelog.body)"
-      ></div>
-    </b-collapse>
+          {{ changelog.tag_name }}
+        </template>
+        <div
+          class="changelog-view__markdown"
+          ref="markdown"
+          v-html="setMarkdown(changelog.body)"
+        ></div>
+      </el-collapse-item>
+    </el-collapse>
   </div>
 </template>
 
@@ -50,7 +49,8 @@ export default {
         vueRouter: 'Vue Router',
         vuex: 'Vuex',
         nuxt: 'Nuxt'
-      }
+      },
+      activeNames: []
     }
   },
   computed: {
@@ -61,7 +61,7 @@ export default {
   },
   mounted () {
     const markdownRefs = this.$refs.markdown
-    markdownRefs.map(markdownEl => {
+    markdownRefs.map((markdownEl) => {
       for (const link of markdownEl.getElementsByTagName('a')) {
         link.setAttribute('target', '_blank')
       }
@@ -75,3 +75,22 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.changelog-view {
+  &__header {
+    margin: 1rem 0;
+    display: flex;
+    align-content: flex-end;
+    align-items: flex-end;
+  }
+  &__header-text {
+    color: $--color-primary;
+    font-size: 200%;
+    margin-left: 1rem;
+  }
+  &__collapse-button {
+    margin-right: 1rem;
+  }
+}
+</style>

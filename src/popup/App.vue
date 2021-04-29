@@ -1,8 +1,5 @@
 <template>
-  <div class="p-3">
-    <h1 class="is-size-4 has-text-weight-semibold">Vue Release Watcher</h1>
-    <router-view />
-  </div>
+  <router-view></router-view>
 </template>
 
 <script>
@@ -14,14 +11,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 :root {
   width: 400px;
-  height: 110px;
 }
-
-h1, h3 {
-  color: #41b883;
-}
-
 </style>

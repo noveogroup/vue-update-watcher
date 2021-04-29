@@ -5,8 +5,8 @@ const baseUrl = 'https://api.github.com'
 
 const vueRepoUrl = '/repos/vuejs/vue/releases'
 const vuexRepoUrl = '/repos/vuejs/vuex/releases'
-const vueRouterRepoUrl = '/repos/vuejs/vue-router/releases'
-// const nuxtRepoUrl = '/repos/nuxt/nuxt.js/releases'
+// const vueRouterRepoUrl = '/repos/vuejs/vue-router/releases'
+const nuxtRepoUrl = '/repos/nuxt/nuxt.js/releases'
 
 async function fetchReleases (repoUrl) {
   try {
@@ -32,9 +32,9 @@ export const fetchAllReleases = async () => {
   const res = await axios.all([
     fetchReleases(vueRepoUrl),
     fetchReleases(vuexRepoUrl),
-    fetchReleases(vueRouterRepoUrl),
-    mockRequest()
-    // fetchReleases(nuxtRepoUrl)
+    // fetchReleases(vueRouterRepoUrl),
+    mockRequest(),
+    fetchReleases(nuxtRepoUrl)
   ])
 
   const obj = {}

@@ -1,4 +1,4 @@
-import localStorage from '@/localStorage'
+import localStorage from '@/helpers/localStorage'
 import {
   RELEASES_STORAGE_KEY,
   LATEST_VERSIONS_STORAGE_KEY

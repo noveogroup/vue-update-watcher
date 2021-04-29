@@ -1,6 +1,6 @@
 import { fetchAllReleases } from '@/axios'
-import localStorage from '@/localStorage'
-import { checkNewVersions } from '@/helpers/updates'
+import localStorage from '@/helpers/localStorage'
+import { generateNewVersionsObj } from '@/helpers/updates'
 import { setBadge } from './badge'
 
 export const RELEASES_STORAGE_KEY = 'releases'
@@ -9,8 +9,7 @@ export const LATEST_VERSIONS_STORAGE_KEY = 'newVersions'
 browser.runtime.onInstalled.addListener(async () => {
   const fetchedReleases = await fetchAllReleases()
   await localStorage.set(RELEASES_STORAGE_KEY, fetchedReleases)
-  const versions = checkNewVersions(fetchedReleases, fetchedReleases)
-  console.log(versions[1])
+  const versions = generateNewVersionsObj(fetchedReleases, fetchedReleases)
   localStorage.set(LATEST_VERSIONS_STORAGE_KEY, versions[1])
 })
 
@@ -20,7 +19,7 @@ browser.alarms.onAlarm.addListener(async alarm => {
   const fetchedReleases = await fetchAllReleases()
   const currReleases = await localStorage.get(RELEASES_STORAGE_KEY)
 
-  const [isUpdated, latestVersions] = checkNewVersions(
+  const [isUpdated, latestVersions] = generateNewVersionsObj(
     currReleases,
     fetchedReleases
   )
