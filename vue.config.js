@@ -1,13 +1,13 @@
 module.exports = {
-  css: {
-    loaderOptions: {
-      sass: {
-        additionalData: `
-          @import "./src/assets/scss/element-variables.scss";
-        `
-      }
-    }
-  },
+  // css: {
+  //   loaderOptions: {
+  //     sass: {
+  //       additionalData: `
+  //         @import "./src/assets/scss/element-variables.scss";
+  //       `
+  //     }
+  //   }
+  // },
   pages: {
     popup: {
       template: 'public/browser-extension.html',

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="container">
-      <el-row>
+    <div class="home-view">
+      <el-row class="home-view__row">
         <el-col :span="10">
           <router-link to="/changelogs/vue">
             <el-button
@@ -12,6 +12,7 @@
                   : 'primary'
               "
               plain
+              class="home-view__button"
             >
               Vue:
               {{ getLatestVersions.vue.version }}
@@ -24,12 +25,12 @@
             <el-button
               size="mini"
               :type="
-                getLatestVersions.vuex.error ||
-                getLatestVersions.vuex.isUpdated
+                getLatestVersions.vuex.error || getLatestVersions.vuex.isUpdated
                   ? 'danger'
                   : 'primary'
               "
               plain
+              class="home-view__button"
             >
               Vuex:
               {{ getLatestVersions.vuex.version }}
@@ -38,7 +39,7 @@
           </router-link>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row class="home-view__row">
         <el-col :span="10">
           <router-link to="/changelogs/vueRouter">
             <el-button
@@ -47,8 +48,11 @@
                 getLatestVersions.vueRouter.error ||
                 getLatestVersions.vueRouter.isUpdated
                   ? 'danger'
-                  : 'primary'"
-              plain>
+                  : 'primary'
+              "
+              plain
+              class="home-view__button"
+            >
               Vue Router:
               {{ getLatestVersions.vueRouter.version }}
               <span v-if="getLatestVersions.vueRouter.isUpdated"> (new) </span>
@@ -65,6 +69,7 @@
                   : 'primary'
               "
               plain
+              class="home-view__button"
             >
               Nuxt:
               {{ getLatestVersions.nuxt.version }}
@@ -78,6 +83,8 @@
 </template>
 
 <script>
+import { NEW_VERSION_ALARM_NAME } from '@/background/alarms'
+
 export default {
   computed: {
     getChangeLogs () {
@@ -89,7 +96,7 @@ export default {
   },
   created () {
     browser.alarms.onAlarm.addListener((alarm) => {
-      if (alarm.name === 'newVersion') {
+      if (alarm.name === NEW_VERSION_ALARM_NAME) {
         console.log('alarm! the version has been updated', alarm)
         this.$store.dispatch('refreshStorage')
       }
@@ -99,15 +106,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  margin-bottom: 1rem;
-  .el-row {
+.home-view {
+  &__row {
     margin-bottom: 0.5rem;
+  }
 
-    .el-button {
-      min-width: 9rem;
-      font-size: 90%;
-    }
+  &__button {
+    min-width: 9rem;
+    font-size: 90%;
   }
 }
 </style>

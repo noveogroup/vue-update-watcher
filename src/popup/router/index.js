@@ -21,7 +21,17 @@ const routes = [
         path: '/changelogs/:package',
         name: 'Changelogs',
         component: () =>
-          import(/* webpackChunkName: "about" */ '../views/ChangelogView.vue')
+          import(
+            /* webpackChunkName: "abChangelogViewout" */ '../views/ChangelogView.vue'
+          )
+      },
+      {
+        path: '/settings',
+        name: 'Settings',
+        component: () =>
+          import(
+            /* webpackChunkName: "SettingsView" */ '../views/SettingsView.vue'
+          )
       }
     ]
   }
@@ -32,7 +42,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  if ((to.name === 'Changelogs') && (from.name === 'Home')) {
+  if (to.name === 'Changelogs' && from.name === 'Home') {
     await store.dispatch('removeNotification', to.params.package)
   }
   next()

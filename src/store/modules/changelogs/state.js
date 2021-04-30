@@ -1,3 +1,5 @@
+import { defaultSettings } from '@/helpers/constants'
+
 export default {
   changelogs: {
     vue: [
@@ -42,5 +44,6 @@ export default {
       version: null,
       isUpdated: false
     }
-  }
+  },
+  settings: defaultSettings
 }

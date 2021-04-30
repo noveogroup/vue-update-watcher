@@ -77,6 +77,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/globals.scss';
+
 .changelog-view {
   &__header {
     margin: 1rem 0;
@@ -88,6 +90,9 @@ export default {
     color: $--color-primary;
     font-size: 200%;
     margin-left: 1rem;
+  }
+  &__collapse {
+    margin-bottom: 1rem;
   }
   &__collapse-button {
     margin-right: 1rem;
