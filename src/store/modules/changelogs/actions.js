@@ -11,7 +11,6 @@ import {
 } from './mutation-types'
 import { setBadge, clearBadge } from '@/background/badge'
 import { resetAlarm } from '@/background/alarms'
-import { showNewReleaseNotification } from '@/background/notifications'
 
 export default {
   async init ({ commit }) {
@@ -45,9 +44,8 @@ export default {
     showBadge ? setBadge() : clearBadge()
   },
   async setSettings ({ commit }, newSettings) {
-    resetAlarm(newSettings.requestInterval)
-    await localStorage.set(SETTINGS_STORAGE_KEY, newSettings)
-    showNewReleaseNotification('111')
     commit(REFRESH_SETTINGS, newSettings)
+    await localStorage.set(SETTINGS_STORAGE_KEY, newSettings)
+    resetAlarm(newSettings.requestInterval)
   }
 }

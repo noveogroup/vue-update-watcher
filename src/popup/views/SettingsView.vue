@@ -117,28 +117,13 @@ export default {
   &__request-interval,
   &__notifications,
   &__dark-mode {
-    margin-left: 1rem;
-  }
-
-  &__label {
+    margin: 0.5rem 1rem;
+    display: block;
   }
 
   &__title {
     font-size: 200%;
     margin-bottom: 1rem;
-  }
-
-  &__request-interval {
-    padding: 0 1rem;
-  }
-
-  &__notifications {
-    display: block;
-    margin: 1rem 0;
-  }
-
-  &__dark-mode {
-    display: block;
   }
 }
 </style>

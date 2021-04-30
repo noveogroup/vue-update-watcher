@@ -44,12 +44,12 @@ export default {
   data () {
     return {
       isOpen: 0,
-      packageNames: {
+      packageNames: Object.freeze({
         vue: 'Vue',
         vueRouter: 'Vue Router',
         vuex: 'Vuex',
         nuxt: 'Nuxt'
-      },
+      }),
       activeNames: []
     }
   },
@@ -82,9 +82,6 @@ export default {
 .changelog-view {
   &__header {
     margin: 1rem 0;
-    display: flex;
-    align-content: flex-end;
-    align-items: flex-end;
   }
   &__header-text {
     color: $--color-primary;
