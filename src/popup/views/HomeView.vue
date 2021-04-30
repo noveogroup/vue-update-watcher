@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import { NEW_VERSION_ALARM_NAME } from '@/background/alarms'
+import { NEW_VERSION_ALARM_NAME } from '@/helpers/constants'
 
 export default {
   computed: {

@@ -5,12 +5,11 @@ import { generateNewVersionsObj } from '@/helpers/updates'
 import {
   RELEASES_STORAGE_KEY,
   LATEST_VERSIONS_STORAGE_KEY,
-  defaultSettings
+  defaultSettings,
+  RELEASE_CHECK_ALARM_NAME,
+  NEW_VERSION_ALARM_NAME
 } from '@/helpers/constants'
 import { showNewReleaseNotification } from './notifications'
-
-export const RELEASE_CHECK_ALARM_NAME = 'releaseCheck'
-export const NEW_VERSION_ALARM_NAME = 'newVersion'
 
 browser.alarms.create(RELEASE_CHECK_ALARM_NAME, {
   periodInMinutes: defaultSettings.requestInterval
