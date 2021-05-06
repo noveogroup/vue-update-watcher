@@ -1,41 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import store from '@/store'
-import Default from '@/popup/layouts/Default.vue'
-
+import { routes } from './routes'
 Vue.use(VueRouter)
-
-const routes = [
-  {
-    path: '/',
-    name: 'Default',
-    component: Default,
-    children: [
-      {
-        path: '',
-        name: 'Home',
-        component: HomeView
-      },
-      {
-        path: '/changelogs/:package',
-        name: 'Changelogs',
-        component: () =>
-          import(
-            /* webpackChunkName: "abChangelogViewout" */ '../views/ChangelogView.vue'
-          )
-      },
-      {
-        path: '/settings',
-        name: 'Settings',
-        component: () =>
-          import(
-            /* webpackChunkName: "SettingsView" */ '../views/SettingsView.vue'
-          )
-      }
-    ]
-  }
-]
 
 const router = new VueRouter({
   routes

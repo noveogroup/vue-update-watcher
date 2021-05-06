@@ -81,24 +81,11 @@
 </template>
 
 <script>
-import { NEW_VERSION_ALARM_NAME } from '@/helpers/constants'
-
 export default {
   computed: {
-    getChangeLogs () {
-      return this.$store.state.changelogs.changelogs
-    },
     getLatestVersions () {
       return this.$store.state.changelogs.latestVersions
     }
-  },
-  created () {
-    browser.alarms.onAlarm.addListener((alarm) => {
-      if (alarm.name === NEW_VERSION_ALARM_NAME) {
-        console.log('alarm! the version has been updated', alarm)
-        this.$store.dispatch('refreshStorage')
-      }
-    })
   }
 }
 </script>

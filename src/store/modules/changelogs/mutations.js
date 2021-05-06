@@ -1,21 +1,21 @@
 import {
-  REFRESH_CHANGELOGS,
-  CLEAR_CHANGELOGS,
-  REFRESH_LATEST_VERSIONS,
-  REFRESH_SETTINGS
+  SET_RELEASES,
+  SET_LATEST_VERSIONS,
+  SET_SETTINGS,
+  SET_CHANGELOGS_MD_FILES
 } from './mutation-types'
 
 export default {
-  [REFRESH_CHANGELOGS] (state, payload) {
-    state.changelogs = payload
+  [SET_RELEASES] (state, payload) {
+    state.releases = payload
   },
-  [CLEAR_CHANGELOGS] (state) {
-    state.changelogs = []
-  },
-  [REFRESH_LATEST_VERSIONS] (state, payload) {
+  [SET_LATEST_VERSIONS] (state, payload) {
     state.latestVersions = payload
   },
-  [REFRESH_SETTINGS] (state, payload) {
+  [SET_SETTINGS] (state, payload) {
     state.settings = payload
+  },
+  [SET_CHANGELOGS_MD_FILES] (state, payload) {
+    state.changelogMdFiles = payload
   }
 }

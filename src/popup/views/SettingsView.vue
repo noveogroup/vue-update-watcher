@@ -47,10 +47,6 @@ export default {
         notifications: Boolean,
         silentMode: Boolean
       },
-      notificationsValue: {
-        notifications: Boolean,
-        silentMode: Boolean
-      },
       notificationOptions: Object.freeze([
         {
           value: JSON.stringify({
@@ -94,15 +90,10 @@ export default {
       }
     }
   },
-  methods: {
-    saveSettings () {
-      this.$store.dispatch('setSettings', this.settings)
-    }
-  },
   watch: {
     settings: {
       handler: function () {
-        this.saveSettings()
+        this.$store.dispatch('setSettings', this.settings)
       },
       deep: true
     }

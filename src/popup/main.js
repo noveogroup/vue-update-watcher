@@ -15,7 +15,8 @@ import {
   Row,
   Col,
   Slider,
-  Switch
+  Switch,
+  Divider
 } from 'element-ui'
 
 Vue.use(Button)
@@ -28,6 +29,7 @@ Vue.use(Row)
 Vue.use(Col)
 Vue.use(Slider)
 Vue.use(Switch)
+Vue.use(Divider)
 
 /* eslint-disable no-new */
 new Vue({

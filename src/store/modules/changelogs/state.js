@@ -1,7 +1,7 @@
 import { defaultSettings } from '@/helpers/constants'
 
 export default {
-  changelogs: {
+  releases: {
     vue: [
       {
         tag_name: null,
@@ -45,5 +45,6 @@ export default {
       isUpdated: false
     }
   },
-  settings: defaultSettings
+  settings: defaultSettings,
+  changelogMdFiles: []
 }

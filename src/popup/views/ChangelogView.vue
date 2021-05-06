@@ -11,88 +11,56 @@
         {{ packageNames[$route.params.package] }}
       </span>
     </div>
-    <el-collapse v-model="activeNames" class="changelog-view__collapse">
-      <el-collapse-item
-        :name="changelog.id"
-        v-for="changelog in getChangelogs"
-        :key="changelog.id"
-      >
-        <template slot="title">
-          <el-button
-            @click="openExternalLink(changelog.html_url)"
-            size="mini"
-            icon="el-icon-link"
-            class="changelog-view__collapse-button"
-            ></el-button
-          >
-          {{ changelog.tag_name }}
-        </template>
-        <div
-          class="changelog-view__markdown"
-          ref="markdown"
-          v-html="setMarkdown(changelog.body)"
-        ></div>
-      </el-collapse-item>
-    </el-collapse>
+    <el-switch
+      v-model="viewSwitch"
+      active-text="CHANGELOG.md"
+      inactive-text="Releases"
+      inactive-color="#DCDFE6"
+      active-color="#DCDFE6"
+      class="changelog-view__switch"
+    />
+    <ChangelogMdFile v-if="viewSwitch" />
+    <ChangelogList v-else />
   </div>
 </template>
 
 <script>
-import marked from 'marked'
+import ChangelogList from '@/popup/components/ChangelogList'
+import ChangelogMdFile from '@/popup/components/ChangelogMdFile'
 
 export default {
+  components: {
+    ChangelogList,
+    ChangelogMdFile
+  },
   data () {
     return {
-      isOpen: 0,
       packageNames: Object.freeze({
         vue: 'Vue',
         vueRouter: 'Vue Router',
         vuex: 'Vuex',
         nuxt: 'Nuxt'
       }),
-      activeNames: []
-    }
-  },
-  computed: {
-    getChangelogs () {
-      const currPackage = this.$route.params.package
-      return this.$store.state.changelogs.changelogs[currPackage]
-    }
-  },
-  mounted () {
-    const markdownRefs = this.$refs.markdown
-    markdownRefs.map((markdownEl) => {
-      for (const link of markdownEl.getElementsByTagName('a')) {
-        link.setAttribute('target', '_blank')
-      }
-    })
-  },
-  methods: {
-    setMarkdown: (md) => marked(md),
-    openExternalLink (link) {
-      window.open(link, '_blank').focus()
+      viewSwitch: false
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/globals.scss';
+@import "@/assets/scss/globals.scss";
 
 .changelog-view {
   &__header {
-    margin: 1rem 0;
+    margin: 0rem 0;
   }
   &__header-text {
     color: $--color-primary;
     font-size: 200%;
     margin-left: 1rem;
   }
-  &__collapse {
-    margin-bottom: 1rem;
-  }
-  &__collapse-button {
-    margin-right: 1rem;
+  &__switch {
+    margin: 1rem 0;
   }
 }
 </style>
