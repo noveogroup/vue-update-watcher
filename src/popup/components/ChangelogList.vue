@@ -36,6 +36,11 @@ export default {
       const currPackage = this.$route.params.package
       return this.$store.state.changelogs.releases[currPackage]
     }
+  },
+  methods: {
+    openExternalLink (link) {
+      window.open(link, '_blank').focus()
+    }
   }
 }
 </script>

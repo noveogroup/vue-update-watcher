@@ -17,6 +17,7 @@
       inactive-text="Releases"
       inactive-color="#DCDFE6"
       active-color="#DCDFE6"
+      :disabled="$route.params.package === 'nuxt'"
       class="changelog-view__switch"
     />
     <ChangelogMdFile v-if="viewSwitch" />
