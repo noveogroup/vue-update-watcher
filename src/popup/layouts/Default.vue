@@ -10,7 +10,7 @@
     <router-view />
     <el-button
       @click="
-        $route.name === 'Settings' ? $router.go(-1) : $router.push('Settings')
+        $route.name === 'Settings' ? $router.go(-1) : $router.push('/settings')
       "
       class="default-layout__settings"
       size="mini"
@@ -33,6 +33,9 @@
     position: absolute;
     right: 20px;
     top: 20px;
+  }
+  &__settings {
+    margin-top: 0.5rem;
   }
 }
 </style>

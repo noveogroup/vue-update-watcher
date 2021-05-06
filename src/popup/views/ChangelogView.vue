@@ -1,12 +1,12 @@
 <template>
   <div class="changelog-view">
-    <div class="changelog-view__header" justify="center" align="bottom">
-      <router-link to="/"
-        ><el-button
-          size="mini"
-          class="changelog-view__back"
-          icon="el-icon-arrow-left"
-      /></router-link>
+    <div class="changelog-view__header">
+      <el-button
+        size="mini"
+        class="changelog-view__back"
+        icon="el-icon-arrow-left"
+        @click="$router.replace('/')"
+      />
       <span class="changelog-view__header-text">
         {{ packageNames[$route.params.package] }}
       </span>
@@ -53,6 +53,8 @@ export default {
 .changelog-view {
   &__header {
     margin: 0rem 0;
+    display: flex;
+    align-items: flex-end;
   }
   &__header-text {
     color: $--color-primary;
