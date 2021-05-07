@@ -8,17 +8,26 @@
       src="@/assets/logo.png"
     />
     <router-view />
-    <el-button
-      @click="
-        $route.name === 'Settings' ? $router.go(-1) : $router.push('/settings')
-      "
-      class="default-layout__settings"
-      size="mini"
-      type="info"
-      plain
-      :icon="
-        $route.name === 'Settings' ? 'el-icon-arrow-left' : 'el-icon-setting'"
-    />
+    <footer class="default-layout__footer">
+      <el-button
+        @click="
+          $route.name === 'Settings'
+            ? $router.go(-1)
+            : $router.push('/settings')
+        "
+        class="default-layout__settings"
+        size="mini"
+        type="info"
+        plain
+        :icon="
+          $route.name === 'Settings' ? 'el-icon-arrow-left' : 'el-icon-setting'
+        "
+      />
+      <span class="default-layout__credits"
+        >Made by
+        <a href="https://noveogroup.com/" target="_blank">Noveo</a></span
+      >
+    </footer>
   </div>
 </template>
 
@@ -36,6 +45,14 @@
   }
   &__settings {
     margin-top: 0.5rem;
+  }
+  &__footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  &__credits {
+    font-size: 80%;
   }
 }
 </style>

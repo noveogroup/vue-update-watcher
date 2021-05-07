@@ -21,10 +21,7 @@ export default {
     }
   },
   methods: {
-    setMarkdown: (md) => marked(md),
-    openExternalLink (link) {
-      window.open(link, '_blank').focus()
-    }
+    setMarkdown: (md) => marked(md)
   }
 }
 </script>
