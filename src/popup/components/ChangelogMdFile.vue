@@ -16,7 +16,7 @@ export default {
     getChangelogMdFile () {
       const currPackage = this.$route.params.package
       return atob(
-        this.$store.state.changelogs.changelogMdFiles[currPackage].content
+        this.$store.state.changelogMdFiles[currPackage].content
       )
     }
   }

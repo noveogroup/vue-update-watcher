@@ -1,5 +1,4 @@
 <template>
-<div>
   <el-collapse v-model="activeNames" class="collapse__link">
     <el-collapse-item
       :name="changelog.id"
@@ -18,7 +17,6 @@
       <Markdown :file="changelog.body" />
     </el-collapse-item>
   </el-collapse>
-  </div>
 </template>
 
 <script>
@@ -34,7 +32,7 @@ export default {
   computed: {
     getChangelogs () {
       const currPackage = this.$route.params.package
-      return this.$store.state.changelogs.releases[currPackage]
+      return this.$store.state.releases[currPackage]
     }
   },
   methods: {

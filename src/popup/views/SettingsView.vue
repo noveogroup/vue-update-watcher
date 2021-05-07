@@ -73,7 +73,7 @@ export default {
     }
   },
   created () {
-    this.settings = this.$store.state.changelogs.settings
+    this.settings = this.$store.state.settings
   },
   computed: {
     notificationsObj: {

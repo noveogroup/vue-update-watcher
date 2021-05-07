@@ -84,7 +84,7 @@
 export default {
   computed: {
     getLatestVersions () {
-      return this.$store.state.changelogs.latestVersions
+      return this.$store.state.latestVersions
     }
   }
 }
