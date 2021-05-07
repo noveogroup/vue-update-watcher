@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { releaseObjectKeys } from '@/helpers/constants'
+import { releaseObjectKeys } from '@/constants'
 import urls from './urls'
 
 async function fetchData (repoUrl) {

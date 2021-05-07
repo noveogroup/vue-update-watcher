@@ -5,15 +5,16 @@ import { generateNewVersionsObj } from '@/helpers/updates'
 import {
   RELEASES_STORAGE_KEY,
   LATEST_VERSIONS_STORAGE_KEY,
-  defaultSettings,
   RELEASE_CHECK_ALARM_NAME,
-  CHANGELOG_FILES_STORAGE_KEY
-} from '@/helpers/constants'
+  CHANGELOG_FILES_STORAGE_KEY,
+  requestIntervalDefault
+} from '@/constants'
+
 import { showNewReleaseNotification } from './notifications'
 
 chrome.runtime.onInstalled.addListener(reason => {
   browser.alarms.create(RELEASE_CHECK_ALARM_NAME, {
-    periodInMinutes: defaultSettings.requestInterval
+    periodInMinutes: requestIntervalDefault
   })
 })
 

@@ -7,8 +7,11 @@ import {
   LATEST_VERSIONS_STORAGE_KEY,
   SETTINGS_STORAGE_KEY,
   CHANGELOG_FILES_STORAGE_KEY,
-  defaultSettings
-} from '@/helpers/constants'
+  darkModeDefault,
+  requestIntervalDefault,
+  notificationsDefault,
+  silentModeDefault
+} from '@/constants'
 
 browser.runtime.onInstalled.addListener(async () => {
   const fetchedReleases = await fetchAllReleases()
@@ -16,7 +19,12 @@ browser.runtime.onInstalled.addListener(async () => {
   const versions = generateNewVersionsObj(fetchedReleases, fetchedReleases)
 
   localStorage.set(LATEST_VERSIONS_STORAGE_KEY, versions[1])
-  localStorage.set(SETTINGS_STORAGE_KEY, defaultSettings)
+  localStorage.set(SETTINGS_STORAGE_KEY, {
+    darkMode: darkModeDefault,
+    requestInterval: requestIntervalDefault,
+    notifications: notificationsDefault,
+    silentMode: silentModeDefault
+  })
 
   const changelogFiles = await fetchAllChangelogFiles()
   localStorage.set(CHANGELOG_FILES_STORAGE_KEY, changelogFiles)

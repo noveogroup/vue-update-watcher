@@ -4,7 +4,7 @@ import {
   LATEST_VERSIONS_STORAGE_KEY,
   SETTINGS_STORAGE_KEY,
   CHANGELOG_FILES_STORAGE_KEY
-} from '@/helpers/constants'
+} from '@/constants'
 import {
   SET_RELEASES,
   SET_LATEST_VERSIONS,

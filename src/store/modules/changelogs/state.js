@@ -1,4 +1,9 @@
-import { defaultSettings } from '@/helpers/constants'
+import {
+  darkModeDefault,
+  requestIntervalDefault,
+  notificationsDefault,
+  silentModeDefault
+} from '@/constants'
 
 export default {
   releases: {
@@ -45,6 +50,11 @@ export default {
       isUpdated: false
     }
   },
-  settings: defaultSettings,
+  settings: {
+    darkMode: darkModeDefault,
+    requestInterval: requestIntervalDefault,
+    notifications: notificationsDefault,
+    silentMode: silentModeDefault
+  },
   changelogMdFiles: []
 }

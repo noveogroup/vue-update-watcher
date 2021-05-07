@@ -7,9 +7,7 @@ export const CHANGELOG_FILES_STORAGE_KEY = 'changelogFiles'
 
 export const RELEASE_CHECK_ALARM_NAME = 'releaseCheck'
 
-export const defaultSettings = {
-  darkMode: false,
-  requestInterval: 15,
-  notifications: true,
-  silentMode: true
-}
+export const darkModeDefault = false
+export const requestIntervalDefault = 15
+export const notificationsDefault = true
+export const silentModeDefault = true
