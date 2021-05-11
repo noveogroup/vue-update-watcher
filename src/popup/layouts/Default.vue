@@ -25,7 +25,7 @@
       />
       <span class="default-layout__credits"
         >Made by
-        <a href="https://noveogroup.com/" target="_blank">Noveo</a></span
+        <a href="https://noveogroup.com/" target="_blank" class="default-layout__credits--link">Noveo</a></span
       >
     </footer>
   </div>
@@ -52,7 +52,11 @@
     justify-content: space-between;
   }
   &__credits {
-    font-size: 80%;
+    font-size: 85%;
+    &--link {
+      text-decoration: none;
+      color: $--color-primary;
+    }
   }
 }
 </style>
