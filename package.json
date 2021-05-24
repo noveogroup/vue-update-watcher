@@ -1,20 +1,25 @@
 {
-  "name": "vue-watch",
-  "version": "0.1.0",
+  "name": "vue-update-watcher",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service build --mode development --watch",
+    "dev": "vue-cli-service build --mode development --watch",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy:google-local": "node -r dotenv/config ./deploy/google.js"
   },
   "dependencies": {
+    "add": "^2.0.6",
     "axios": "^0.20.0",
+    "chrome-webstore-upload": "^0.4.4",
     "core-js": "^3.6.5",
+    "dotenv": "^10.0.0",
     "element-ui": "^2.15.1",
     "marked": "^2.0.3",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

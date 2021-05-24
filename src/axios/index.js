@@ -7,20 +7,10 @@ async function fetchData (repoUrl) {
     const res = await axios.get(urls.base + repoUrl)
     return res.data
   } catch (error) {
-    console.log('err in axios', error)
+    console.error('err in axios', error)
     return null
   }
 }
-
-// const mockRequest = async () => {
-//   try {
-//     const res = await axios.get(urls.mock)
-//     return res.data
-//   } catch (error) {
-//     console.log('err in axios', error)
-//     return null
-//   }
-// }
 
 const generateObject = (arr) => {
   const obj = {}
@@ -35,7 +25,6 @@ export const fetchAllReleases = async () => {
     fetchData(urls.vueRepo),
     fetchData(urls.vuexRepo),
     fetchData(urls.vueRouterRepo),
-    // mockRequest()
     fetchData(urls.nuxtRepo)
   ])
   return generateObject(res)
