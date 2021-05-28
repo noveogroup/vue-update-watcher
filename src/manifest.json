@@ -1,12 +1,10 @@
 {
   "manifest_version": 2,
   "name": "Vue release watcher",
-  "homepage_url": "http://localhost:8080/",
   "description": "A Chrome extension that notifies you about latest Vue ecosystem releases. Developed by Noveo: https://noveogroup.com",
   "default_locale": "en",
   "permissions": [
-    "<all_urls>",
-    "*://*/*",
+    "https://api.github.com/*",
     "alarms",
     "notifications",
     "storage"
@@ -17,9 +15,7 @@
     "128": "icons/128.png"
   },
   "background": {
-    "scripts": [
-      "js/background.js"
-    ],
+    "scripts": ["js/background.js"],
     "persistent": false
   },
   "browser_action": {
